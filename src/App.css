@@ -1,38 +1,85 @@
 .App {
   text-align: center;
+  font-family: 'Inter', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.navbar{
+  background-color: #F55A5A;
+  padding: 0rem;
+  width: 100%;
+  height: 70px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  display: flex;
+  
 }
-
-.App-link {
-  color: #61dafb;
+.navbar span{
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
 }
+.hero{
+  padding:4rem;
+  text-align: left;
+}
+.main{
+  display: flex;
+  height: 550px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  position: inherit;
+}
+.main img{
+  width: 320px;
+  height: 450px;
+  position: relative;
+  border-radius: 1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.content{
+  padding: 2rem;
+}
+.location{
+  width: 100%;
+  height:30px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding:1rem;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.country{
+  font-size: 20px;
+  font-weight: 400;
+  color: #2B283A;
+  margin-right: 2rem;
+}
+.map{
+  font-size: 18px;
+}
+.map a{
+  color: rgb(42, 42, 42);
+}
+.title{
+  font-size: 50px;
+  font-weight: 700;
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 1rem 0 1rem 0;
+}
+.date{
+  margin-top: 0.3rem;
+  padding: 0.3rem 0 0 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+.description{
+  font-size: 20px;
+  font-weight: 400;
+  color: #2B283A;
+  margin-top: 1rem;
+  padding: 2rem 0 0 0;
 }
