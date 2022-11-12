@@ -1,5 +1,17 @@
 Practical 10 Lex and Yaac
 -----------------------------
+
+-> Commands
+
+nano filename.l
+lex filename.l
+yacc -d filename.y
+cc lex.yy.c y.tab.c -ll
+
+
+-------------------------------------------------
+
+
 -> p10.l = file
 
           %{
