@@ -1,0 +1,198 @@
+Practical 3 Lex
+-----------------------------------------
+
+-> Commands 
+
+nano filename.l
+lex filename.l
+cc lex.yy.c -ll
+./a.out                       // without inputfile
+./a.out < inputfile.txt       // with inputfile
+
+
+
+---------------------------------------------------
+
+-> Input file
+
+abc
+123
+cde
+456
+// Hey Iam Darshan
+
+/* Hii Hello
+   How are you
+*/
+
+
+---------------------------------------------------------------------
+
+-> p3-1.l = A lexer to print out all numbers from a given file.
+
+%{
+
+#include<stdio.h>
+
+%}
+
+%option noyywrap
+%%
+
+[0-9]* {printf("%s",yytext);}
+. ;
+"\n" {printf("\n");}
+
+%%
+
+int main(){
+yylex();
+return 0;
+}
+
+
+----------------------------------------------------------------------------
+
+
+-> p3-2.l = A lexer which classifies tokens as words, numbers or "other".
+
+%{
+
+#include<stdio.h>
+%}
+%option noyywrap
+
+%%
+
+[a-zA-Z_]* {printf("'%s' is Word\n",yytext);}
+[0-9]+ {printf("'%s' is number\n",yytext);}
+" " ;
+. {printf("'%s' is other\n",yytext);}
+
+%%
+
+int main(){
+printf("Enter String");
+yylex();
+return 0;
+}
+
+
+
+--------------------------------------------------------------------------------
+
+
+-> p3-3.l = Write a Lex Program to count number of vowels and consonants
+
+%{
+
+#include<stdio.h>
+int count_v=0;
+int count_c=0;
+%}
+%option noyywrap
+
+%%
+
+[aeiou] {count_v++;}
+[b-zB-Z!e!i!o!u] {count_c++;}
+"\n" {printf("%d are vowal and %d are consonant",count_v,count_c); count_v=0; count_c=0;}
+. ;
+
+%%
+
+int main(){
+printf("Enter String");
+yylex();
+return 0;
+}
+
+
+
+--------------------------------------------------------------------------------
+
+
+-> p3-4.l = A lexer which adds line numbers to the given file.
+
+%{
+
+#include<stdio.h>
+int line_count=1;
+%}
+%option noyywrap
+
+%%
+
+^. {printf("%d %s",line_count++,yytext);}
+"\n" {printf("\n");}
+
+%%
+
+int main(){
+yylex();
+return 0;
+}
+
+
+
+
+---------------------------------------------------------------------------------
+
+-> p3-5.l = A lexer which attempt to extract only comments.
+
+%{
+
+#include<stdio.h>
+int flag=0;
+
+%}
+%option noyywrap
+%%
+
+^[ ]*\/\/.* {printf("%s",(yytext));}
+^[ ]*\/\* {flag=1; printf("%s",yytext);}
+$\*\\  {flag=0;}
+"\n" {printf("\n");}
+. {if(flag) printf("%s",yytext);};
+
+%%
+
+
+int main(){
+yylex();
+return 0;
+}
+
+
+---------------------------------------------------------------------------------------
+
+
+-> p3-6.l = A lexer to do word count function of wc command in UNIX. It prints the number of lines, words and characters in a file
+
+%{
+
+#include<stdio.h>
+int line_count=0;
+int word_count=0;
+int char_count=0;
+
+%}
+%option noyywrap
+
+%%
+
+^[ ]+ ;
+[ ]$ ;
+[ ]* {word_count++;}
+"\n" {line_count++;}
+. {char_count++;}
+
+%%
+
+int main(){
+yylex();
+printf("NUmber of lines %d\n Number of word %d\n Number of char%d",line_count,word_count+line_count,char_count);
+return 0;
+}
+
+
